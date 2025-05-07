@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Học - Hội Chị Chị Em Em</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Trang Chủ</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Lịch Học</a>
+                <div class="dropdown-content" id="membersList">
+                    <div class="member" data-member="1" data-birth-date="Ngày sinh: 01/01/2000">
+                        <img src="members/anhtai.jpg" alt="Anh Tài">
+                        <span>Anh Tài</span>
+                    </div>
+                    <div class="member" data-member="2" data-birth-date="Ngày sinh: 15/03/2001">
+                        <img src="https://ui-avatars.com/api/?name=Quynh+Huong&background=random" alt="Quỳnh Hương">
+                        <span>Quỳnh Hương</span>
+                    </div>
+                    <div class="member" data-member="3" data-birth-date="Ngày sinh: 20/05/2000">
+                        <img src="https://ui-avatars.com/api/?name=Ta+Hieu+Nhan&background=random" alt="Tạ Hiểu Nhân">
+                        <span>Tạ Hiểu Nhân</span>
+                    </div>
+                    <div class="member" data-member="4" data-birth-date="Ngày sinh: 10/07/2001">
+                        <img src="https://ui-avatars.com/api/?name=Nguyen+Thi+Diem+My&background=random" alt="Nguyễn Thị Diễm My">
+                        <span>Nguyễn Thị Diễm My</span>
+                    </div>
+                    <div class="member" data-member="5" data-birth-date="Ngày sinh: 25/09/2000">
+                        <img src="https://ui-avatars.com/api/?name=Hai&background=random" alt="Hải">
+                        <span>Hải</span>
+                    </div>
+                    <div class="member" data-member="6" data-birth-date="Ngày sinh: 05/11/2001">
+                        <img src="https://ui-avatars.com/api/?name=Phuong+Thao&background=random" alt="Phương Thảo">
+                        <span>Phương Thảo</span>
+                    </div>
+                </div>
+            </div>
+            <a href="#memories">Kỷ Niệm</a>
+        </div>
+    </nav>
+
+    <div id="scheduleContent" class="schedule-content">
+        <h2 id="memberName">Lịch Học</h2>
+        <div id="scheduleTable"></div>
+    </div>
+
+    <script src="schedule.js"></script>
+</body>
+</html> 

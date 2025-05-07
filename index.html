@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hội Chị Chị Em Em</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="#home">Trang Chủ</a>
+            <a href="#members">Thành Viên</a>
+            <a href="#schedule">Lịch Học</a>
+            <a href="#memories">Kỷ Niệm</a>
+        </div>
+    </nav>
+
+    <section id="home" class="section">
+        <div class="container">
+            <h1>Hội Chị Chị Em Em</h1>
+            <p class="subtitle">Nơi lưu giữ những kỷ niệm đẹp của chúng ta</p>
+        </div>
+    </section>
+
+    <section id="members" class="section">
+        <div class="container">
+            <h2>Thành Viên</h2>
+            <div class="members-grid">
+                <div class="member" data-member="1" data-birth-date="Ngày sinh: 01/01/2000">
+                    <img src="https://ui-avatars.com/api/?name=Anh+Tai&background=random" alt="Anh Tài">
+                    <h3>Anh Tài</h3>
+                </div>
+                <div class="member" data-member="2" data-birth-date="Ngày sinh: 15/03/2001">
+                    <img src="https://ui-avatars.com/api/?name=Quynh+Huong&background=random" alt="Quỳnh Hương">
+                    <h3>Quỳnh Hương</h3>
+                </div>
+                <div class="member" data-member="3" data-birth-date="Ngày sinh: 20/05/2000">
+                    <img src="members/hieunhan.jpg" alt="Tạ Hiểu Nhân">
+                    <h3>Tạ Hiểu Nhân</h3>
+                </div>
+                <div class="member" data-member="4" data-birth-date="Ngày sinh: 10/07/2001">
+                    <img src="https://ui-avatars.com/api/?name=Nguyen+Thi+Diem+My&background=random" alt="Nguyễn Thị Diễm My">
+                    <h3>Nguyễn Thị Diễm My</h3>
+                </div>
+                <div class="member" data-member="5" data-birth-date="Ngày sinh: 25/09/2000">
+                    <img src="https://ui-avatars.com/api/?name=Hai&background=random" alt="Hải">
+                    <h3>Hải</h3>
+                </div>
+                <div class="member" data-member="6" data-birth-date="Ngày sinh: 05/11/2001">
+                    <img src="https://ui-avatars.com/api/?name=Phuong+Thao&background=random" alt="Phương Thảo">
+                    <h3>Phương Thảo</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="section">
+        <div class="container">
+            <h2>Lịch Học</h2>
+            <div id="scheduleContent">
+                <p class="schedule-intro">Bấm vào tên thành viên để xem lịch học</p>
+                <div id="scheduleTable"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="memories" class="section">
+        <div class="container">
+            <h2>Kỷ Niệm</h2>
+            <div class="memories-grid">
+                <div class="memory-card">
+                    <h3>Vũng Tàu - Tháng 7/2023</h3>
+                    <p>Chuyến đi Đà Lạt thật tuyệt vời với những khoảnh khắc cười đùa bên nhau.</p>
+                </div>
+                <div class="memory-card">
+                    <h3>Cần Giờ - Hè 2024</h3>
+                    <p>Hè 2023, chúng ta đã có một chuyến biển đầy ý nghĩa tại Nha Trang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
