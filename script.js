@@ -15,17 +15,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-links');
+    let isMenuOpen = false;
 
-    hamburger.addEventListener('click', () => {
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        toggleMenu();
     });
 
     // Close menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
+            isMenuOpen = false;
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
 
@@ -189,9 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.body.appendChild(memberInfoModal);
 
-    // Add click events to members
+    // Add touch events for members
     document.querySelectorAll('.member').forEach(member => {
-        member.addEventListener('click', () => {
+        member.addEventListener('touchstart', (e) => {
+            e.preventDefault();
             const memberId = member.getAttribute('data-member');
             const memberData = memberSchedules[memberId];
             
@@ -212,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalRelationship.textContent = memberData.relationship;
 
                 modal.style.display = 'block';
-                // Add active class after a small delay to trigger animation
                 setTimeout(() => {
                     modal.classList.add('active');
                 }, 10);
@@ -233,7 +244,15 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const modal = document.getElementById('memberInfoModal');
             modal.classList.remove('active');
-            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        });
+
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const modal = document.getElementById('memberInfoModal');
+            modal.classList.remove('active');
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
@@ -245,7 +264,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('memberInfoModal');
         if (e.target === modal) {
             modal.classList.remove('active');
-            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    });
+
+    window.addEventListener('touchstart', (e) => {
+        const modal = document.getElementById('memberInfoModal');
+        if (e.target === modal) {
+            modal.classList.remove('active');
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);

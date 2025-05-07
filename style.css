@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
@@ -474,6 +475,7 @@ h2::after {
     transition: opacity 0.3s ease;
     overflow-y: auto;
     padding: 20px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal.active {
@@ -589,24 +591,27 @@ h2::after {
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
+        z-index: 1001;
     }
 
     .nav-links {
         display: none;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
+        height: 100vh;
         background: linear-gradient(to right, #1a472a, #2d8659);
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
+        padding: 5rem 0;
         gap: 1rem;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         transform: translateY(-10px);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -632,10 +637,7 @@ h2::after {
         width: 100%;
         text-align: center;
         padding: 1rem;
-    }
-
-    nav a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        font-size: 1.2rem;
     }
 
     .section {
@@ -660,9 +662,10 @@ h2::after {
     }
 
     .modal-content {
-        margin: 20% auto;
+        margin: 1rem auto;
         width: 95%;
         padding: 1.5rem;
+        max-height: 80vh;
     }
 
     .member-info img {
@@ -672,6 +675,15 @@ h2::after {
 
     .member-details p {
         font-size: 1rem;
+    }
+
+    .member {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .member:active {
+        transform: scale(0.98);
     }
 }
 
