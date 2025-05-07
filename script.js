@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Slideshow functionality
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Change slide every 5 seconds
+    setInterval(nextSlide, 5000);
+
     // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-links');
@@ -32,68 +45,80 @@ document.addEventListener('DOMContentLoaded', () => {
     const memberSchedules = {
         1: {
             name: "Anh Tài",
-            birthDate: "01/01/2000",
-            major: "Công nghệ thông tin",
+            birthDate: "10/05/2004",
+            major: "Kỹ Thuật Phần Mềm",
+            description: "Chuyên gia debug code và... debug tình yêu 😎",
+            relationship: "Độc thân và... đang tìm kiếm 💔",
             schedule: {
-                "Slot 1": ["JPD133 (NVH, 408)", "-", "-", "JPD133 (NVH, 408)", "-", "-", "-"],
-                "Slot 2": ["SWP391 (NVH, 413)", "SWP302 (NVH, 412)", "SWP391 (NVH, 413)", "SWP302 (NVH, 412)", "-", "-", "-"],
-                "Slot 3": ["-", "WT301 (NVH, 409)", "-", "WT301 (NVH, 409)", "-", "-", "-"],
-                "Slot 4": ["-", "-", "-", "-", "-", "-", "-"]
+                "Slot 1": ["-", "-", "-", "-", "-", "-", "-"],
+                "Slot 2": ["JPD133 (NVH, 408)", "-", "-", "JPD133 (NVH, 408)", "-", "-", "-"],
+                "Slot 3": ["SWP391 (NVH, 413)", "-", "SWR302 (NVH, 412)", "SWP391 (NVH, 413)", "-", "SWR302 (NVH, 412)", "-"],
+                "Slot 4": ["-", "-", "SWT301 (NVH, 408)", "-", "-", "SWT301 (NVH, 408)", "-"]
             }
         },
         2: {
             name: "Quỳnh Hương",
-            birthDate: "15/03/2001",
-            major: "Công nghệ thông tin",
+            birthDate: "03/11/2004",
+            major: "Ngôn Ngữ Anh",
+            description: "Cô nàng 'đa ngôn ngữ' - nói tiếng Anh, tiếng Việt và cả... tiếng lòng 💝",
+            relationship: "Độc thân và... đang học tiếng Anh 📚",
             schedule: {
-                "Slot 1": ["-", "-", "-", "-", "-", "-", "-"],
+                "Slot 1": ["-", "-", "HỌC", "-", "-", "HỌC", "-"],
                 "Slot 2": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 3": ["-", "-", "-", "-", "-", "-", "-"],
+                "Slot 3": ["HỌC", "-", "HỌC", "HỌC", "-", "HỌC", "-"],
                 "Slot 4": ["-", "-", "-", "-", "-", "-", "-"]
             }
         },
         3: {
-            name: "Tạ Hiểu Nhân",
-            birthDate: "20/05/2000",
-            major: "Công nghệ thông tin",
+            name: "Hiểu Nhân",
+            birthDate: "18/05/2004",
+            major: "Kỹ Thuật Phần Mềm",
+            description: "Coder chuyên nghiệp, nhưng đôi khi code còn dễ hiểu hơn... tình cảm của cậu ấy 😅",
+            relationship: "Độc thân và... đang debug tình yêu 💻",
             schedule: {
-                "Slot 1": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 2": ["-", "-", "-", "-", "-", "-", "-"],
+                "Slot 1": ["HỌC", "-", "HỌC", "HỌC", "-", "HỌC", "-"],
+                "Slot 2": ["HỌC", "-", "HỌC", "HỌC", "-", "HỌC", "-"],
                 "Slot 3": ["-", "-", "-", "-", "-", "-", "-"],
                 "Slot 4": ["-", "-", "-", "-", "-", "-", "-"]
             }
         },
         4: {
-            name: "Nguyễn Thị Diễm My",
-            birthDate: "10/07/2001",
-            major: "Công nghệ thông tin",
+            name: "Diễm My",
+            birthDate: "29/02/2004",
+            major: "Thiết Kế Đồ Họa",
+            description: "Nữ hoàng Photoshop, chuyên gia biến mọi thứ thành... nghệ thuật 🎨",
+            relationship: "Đã có người yêu 💑",
             schedule: {
-                "Slot 1": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 2": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 3": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 4": ["-", "-", "-", "-", "-", "-", "-"]
+                "Slot 1": ["-", "HỌC", "HỌC", "-", "-", "HỌC", "-"],
+                "Slot 2": ["-", "HỌC", "HỌC", "-", "-", "HỌC", "-"],
+                "Slot 3": ["-", "-", "HỌC", "-", "-", "HỌC", "-"],
+                "Slot 4": ["-", "-", "HỌC", "-", "-", "HỌC", "-"]
             }
         },
         5: {
-            name: "Hải",
-            birthDate: "25/09/2000",
-            major: "Công nghệ thông tin",
+            name: "Thanh Hải",
+            birthDate: "02/09/2004",
+            major: "Kỹ Thuật Phần Mềm",
+            description: "Chuyên gia giải quyết bug và... giải quyết tình huống khó xử 😎",
+            relationship: "Độc thân và... đang tìm bug trong tình yêu 🐛",
             schedule: {
-                "Slot 1": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 2": ["-", "-", "-", "-", "-", "-", "-"],
+                "Slot 1": ["-", "HỌC", "-", "-", "HỌC", "-", "-"],
+                "Slot 2": ["-", "HỌC", "HỌC", "HỌC", "HỌC", "HỌC", "-"],
                 "Slot 3": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 4": ["-", "-", "-", "-", "-", "-", "-"]
+                "Slot 4": ["HỌC", "-", "-", "HỌC", "-", "-", "-"]
             }
         },
         6: {
             name: "Phương Thảo",
-            birthDate: "05/11/2001",
-            major: "Công nghệ thông tin",
+            birthDate: "27/09/2004",
+            major: "Kinh Doanh Quốc Tế",
+            description: "Nữ thương nhân tương lai, nhưng hiện tại đang... thương nhớ ai đó 💕",
+            relationship: "Đã có người yêu 💑",
             schedule: {
                 "Slot 1": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 2": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 3": ["-", "-", "-", "-", "-", "-", "-"],
-                "Slot 4": ["-", "-", "-", "-", "-", "-", "-"]
+                "Slot 2": ["-", "-", "HỌC", "-", "-", "HỌC", "-"],
+                "Slot 3": ["-", "HỌC", "HỌC", "-", "HỌC", "HỌC", "-"],
+                "Slot 4": ["-", "HỌC", "-", "-", "HỌC", "-", "-"]
             }
         }
         // Add more member schedules as needed
@@ -156,6 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="member-details">
                     <p><strong>Ngày sinh:</strong> <span id="modalMemberBirth"></span></p>
                     <p><strong>Ngành học:</strong> <span id="modalMemberMajor"></span></p>
+                    <p class="member-description"><span id="modalMemberDescription"></span></p>
+                    <p class="member-relationship"><span id="modalMemberRelationship"></span></p>
                 </div>
             </div>
         </div>
@@ -175,11 +202,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modalName = document.getElementById('modalMemberName');
                 const modalBirth = document.getElementById('modalMemberBirth');
                 const modalMajor = document.getElementById('modalMemberMajor');
+                const modalDescription = document.getElementById('modalMemberDescription');
+                const modalRelationship = document.getElementById('modalMemberRelationship');
 
                 modalImg.src = member.querySelector('img').src;
                 modalName.textContent = memberData.name;
                 modalBirth.textContent = memberData.birthDate;
                 modalMajor.textContent = memberData.major;
+                modalDescription.textContent = memberData.description;
+                modalRelationship.textContent = memberData.relationship;
 
                 modal.style.display = 'block';
 

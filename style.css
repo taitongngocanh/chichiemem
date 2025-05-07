@@ -5,15 +5,18 @@
     box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: #333;
+    font-weight: 300;
 }
 
 /* Navigation */
 nav {
-    background-color: #333;
+    background: linear-gradient(to right, #1a472a, #2d8659);
     padding: 1rem;
     position: fixed;
     width: 100%;
@@ -22,6 +25,12 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+nav:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hamburger {
@@ -35,6 +44,7 @@ nav {
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
+    transition: all 0.3s ease;
 }
 
 .hamburger span {
@@ -50,17 +60,45 @@ nav {
     display: flex;
     justify-content: center;
     gap: 2rem;
+    transition: all 0.3s ease;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
-    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
 }
 
 nav a:hover {
-    color: #4CAF50;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+nav a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* Sections */
@@ -79,24 +117,92 @@ nav a:hover {
 
 /* Home section */
 #home {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('banner.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
+    position: relative;
     min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+}
+
+#home .container {
+    position: relative;
+    z-index: 1;
 }
 
 #home h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease-out;
 }
 
 .subtitle {
     font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Members section */
@@ -118,16 +224,96 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
+.member:hover::before,
+.member:hover::after {
+    content: '❤';
+    position: absolute;
+    color: #ff4d4d;
+    font-size: 1.5rem;
+    animation: floatHeart 1.5s ease-in-out infinite;
+    opacity: 0;
+}
+
+.member:hover::before {
+    top: -20px;
+    left: 20px;
+    animation-delay: 0.2s;
+}
+
+.member:hover::after {
+    top: -20px;
+    right: 20px;
+    animation-delay: 0.4s;
+}
+
+.member:hover .heart-1,
+.member:hover .heart-2,
+.member:hover .heart-3,
+.member:hover .heart-4 {
+    position: absolute;
+    color: #ff4d4d;
+    font-size: 1.2rem;
+    animation: floatHeart 1.5s ease-in-out infinite;
+    opacity: 0;
+}
+
+.member:hover .heart-1 {
+    top: 10px;
+    left: -20px;
+    animation-delay: 0.1s;
+}
+
+.member:hover .heart-2 {
+    top: 10px;
+    right: -20px;
+    animation-delay: 0.3s;
+}
+
+.member:hover .heart-3 {
+    bottom: 10px;
+    left: -20px;
+    animation-delay: 0.5s;
+}
+
+.member:hover .heart-4 {
+    bottom: 10px;
+    right: -20px;
+    animation-delay: 0.7s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
 .member img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin-bottom: 1rem;
-    border: 3px solid #4CAF50;
+    border: 3px solid #1a472a;
+    transition: all 0.3s ease;
+}
+
+.member:hover img {
+    border-color: #ff4d4d;
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
 }
 
 .member h3 {
     color: #333;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    font-weight: 500;
 }
 
 /* Schedule section */
@@ -140,6 +326,8 @@ nav a:hover {
     margin-bottom: 2rem;
     font-size: 1.2rem;
     color: #666;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
 .schedule-table {
@@ -147,17 +335,70 @@ nav a:hover {
     border-collapse: collapse;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .schedule-table th, .schedule-table td {
     border: 1px solid #ddd;
     padding: 1rem;
     text-align: center;
+    transition: all 0.3s ease;
 }
 
 .schedule-table th {
-    background-color: #4CAF50;
+    background: linear-gradient(to right, #1a472a, #2d8659);
     color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.schedule-table td {
+    position: relative;
+    font-weight: 300;
+}
+
+.schedule-table td:first-child {
+    font-weight: 500;
+    background-color: #f5f5f5;
+}
+
+/* Highlight cells with classes */
+.schedule-table td:not(:first-child):not(:empty) {
+    background-color: #e8f5e9;
+    color: #1a472a;
+    font-weight: 500;
+    animation: pulse 2s infinite;
+    cursor: pointer;
+}
+
+.schedule-table td:not(:first-child):not(:empty):hover {
+    background-color: #c8e6c9;
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(26, 71, 42, 0.2);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(26, 71, 42, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(26, 71, 42, 0);
+    }
+}
+
+/* Add a small icon for cells with classes */
+.schedule-table td:not(:first-child):not(:empty)::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.8rem;
+    opacity: 0.5;
 }
 
 /* Memories section */
@@ -176,16 +417,43 @@ nav a:hover {
 }
 
 .memory-card h3 {
-    color: #4CAF50;
+    color: #1a472a;
     margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.memory-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
 }
 
 /* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
 h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 2rem;
     color: #333;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, #1a472a, #2d8659);
+    border-radius: 2px;
 }
 
 /* Modal styles */
@@ -247,11 +515,13 @@ h2 {
 .member-details p {
     margin: 0.8rem 0;
     font-size: 1.1rem;
+    line-height: 1.7;
 }
 
 .member-details strong {
-    color: #4CAF50;
+    color: #1a472a;
     margin-right: 0.5rem;
+    font-weight: 500;
 }
 
 .close-button {
@@ -280,15 +550,23 @@ h2 {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: #333;
+        background: linear-gradient(to right, #1a472a, #2d8659);
         flex-direction: column;
         align-items: center;
         padding: 1rem 0;
         gap: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
     }
 
     .nav-links.active {
         display: flex;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
     }
 
     .hamburger.active span:nth-child(1) {
@@ -301,6 +579,16 @@ h2 {
 
     .hamburger.active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    nav a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .section {
@@ -338,4 +626,64 @@ h2 {
     .member-details p {
         font-size: 1rem;
     }
+}
+
+.member-description {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(to right, rgba(26, 71, 42, 0.1), rgba(45, 134, 89, 0.1));
+    border-radius: 8px;
+    font-style: italic;
+    color: #1a472a;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.member-relationship {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Style for single status */
+.member-relationship:not(:contains("Đã có người yêu")) {
+    background: linear-gradient(to right, rgba(255, 77, 77, 0.1), rgba(255, 77, 77, 0.2));
+    color: #ff4d4d;
+    border: 1px dashed #ff4d4d;
+}
+
+/* Style for taken status */
+.member-relationship:contains("Đã có người yêu") {
+    background: linear-gradient(to right, rgba(26, 71, 42, 0.1), rgba(45, 134, 89, 0.2));
+    color: #1a472a;
+    border: 1px solid #1a472a;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-relationship:contains("Đã có người yêu")::before {
+    content: '💑';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0.5;
 }
