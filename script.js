@@ -196,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const memberData = memberSchedules[memberId];
             
             if (memberData) {
-                // Update member info modal
                 const modal = document.getElementById('memberInfoModal');
                 const modalImg = document.getElementById('modalMemberImage');
                 const modalName = document.getElementById('modalMemberName');
@@ -213,6 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalRelationship.textContent = memberData.relationship;
 
                 modal.style.display = 'block';
+                // Add active class after a small delay to trigger animation
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
 
                 // Update schedule content
                 const scheduleContent = document.getElementById('scheduleContent');
@@ -228,7 +231,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close modal when clicking the close button
     document.querySelectorAll('.close-button').forEach(button => {
         button.addEventListener('click', () => {
-            document.getElementById('memberInfoModal').style.display = 'none';
+            const modal = document.getElementById('memberInfoModal');
+            modal.classList.remove('active');
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         });
     });
 
@@ -236,7 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
         const modal = document.getElementById('memberInfoModal');
         if (e.target === modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         }
     });
 });

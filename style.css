@@ -118,7 +118,8 @@ nav a:hover::before {
 /* Home section */
 #home {
     position: relative;
-    min-height: 60vh;
+    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -458,7 +459,10 @@ h2::after {
 
 /* Modal styles */
 .modal {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -466,28 +470,35 @@ h2::after {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.modal.active {
+    opacity: 1;
 }
 
 .modal-content {
     background-color: white;
-    margin: 10% auto;
+    position: relative;
     padding: 2rem;
     width: 90%;
     max-width: 500px;
-    border-radius: 8px;
-    position: relative;
-    animation: modalFadeIn 0.3s;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
 }
 
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .member-info {
@@ -499,23 +510,31 @@ h2::after {
     height: 150px;
     border-radius: 50%;
     margin-bottom: 1rem;
-    border: 3px solid #4CAF50;
+    border: 3px solid #1a472a;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.member-info img:hover {
+    transform: scale(1.05);
 }
 
 .member-info h2 {
     color: #333;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
 }
 
 .member-details {
     text-align: left;
     padding: 0 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .member-details p {
     margin: 0.8rem 0;
     font-size: 1.1rem;
-    line-height: 1.7;
 }
 
 .member-details strong {
@@ -528,14 +547,42 @@ h2::after {
     position: absolute;
     top: 1rem;
     right: 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #666;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 1;
 }
 
 .close-button:hover {
-    color: #333;
+    color: #1a472a;
+    background-color: rgba(26, 71, 42, 0.1);
+    transform: rotate(90deg);
+}
+
+/* Custom scrollbar for member details */
+.member-details::-webkit-scrollbar {
+    width: 8px;
+}
+
+.member-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.member-details::-webkit-scrollbar-thumb {
+    background: #1a472a;
+    border-radius: 4px;
+}
+
+.member-details::-webkit-scrollbar-thumb:hover {
+    background: #2d8659;
 }
 
 /* Responsive Design */
