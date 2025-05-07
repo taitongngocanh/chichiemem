@@ -200,10 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.body.appendChild(memberInfoModal);
 
-    // Add touch events for members
+    // Add click and touch events for members
     document.querySelectorAll('.member').forEach(member => {
-        member.addEventListener('touchstart', (e) => {
-            e.preventDefault();
+        const handleMemberClick = (e) => {
+            if (e.type === 'touchstart') {
+                e.preventDefault();
+            }
             const memberId = member.getAttribute('data-member');
             const memberData = memberSchedules[memberId];
             
@@ -236,31 +238,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('schedule').scrollIntoView({ behavior: 'smooth' });
                 }
             }
-        });
+        };
+
+        member.addEventListener('click', handleMemberClick);
+        member.addEventListener('touchstart', handleMemberClick);
     });
 
     // Close modal when clicking the close button
     document.querySelectorAll('.close-button').forEach(button => {
-        button.addEventListener('click', () => {
+        const handleClose = (e) => {
+            if (e.type === 'touchstart') {
+                e.preventDefault();
+            }
             const modal = document.getElementById('memberInfoModal');
             modal.classList.remove('active');
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
-        });
+        };
 
-        button.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            const modal = document.getElementById('memberInfoModal');
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        });
+        button.addEventListener('click', handleClose);
+        button.addEventListener('touchstart', handleClose);
     });
 
     // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
+    const handleOutsideClick = (e) => {
+        if (e.type === 'touchstart') {
+            e.preventDefault();
+        }
         const modal = document.getElementById('memberInfoModal');
         if (e.target === modal) {
             modal.classList.remove('active');
@@ -268,15 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.style.display = 'none';
             }, 300);
         }
-    });
+    };
 
-    window.addEventListener('touchstart', (e) => {
-        const modal = document.getElementById('memberInfoModal');
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
-    });
+    window.addEventListener('click', handleOutsideClick);
+    window.addEventListener('touchstart', handleOutsideClick);
 });
