@@ -277,4 +277,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('click', handleOutsideClick);
     window.addEventListener('touchstart', handleOutsideClick);
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeLightboxBtn = document.querySelector('.close-lightbox');
+
+    // Function to open lightbox
+    window.openLightbox = function(element) {
+        const img = element.querySelector('img');
+        const caption = element.querySelector('.gallery-caption').textContent;
+        
+        lightboxImg.src = img.src;
+        lightbox.querySelector('.lightbox-caption').textContent = caption;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    // Function to close lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Event listeners for lightbox
+    closeLightboxBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLightbox();
+        }
+    });
+
+    // Close lightbox when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
 });
